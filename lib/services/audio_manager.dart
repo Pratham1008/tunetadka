@@ -28,16 +28,16 @@ class AudioManager extends ChangeNotifier {
   Duration get duration => _audioPlayer.duration ?? Duration.zero;
 
   Future<void> _init() async {
-    // Setup audio session for platform audio focus, interruptions etc
+
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.music());
 
-    // Listen to player state changes to notify UI
+
     _audioPlayer.playerStateStream.listen((playerState) {
       notifyListeners();
     });
 
-    // Listen to current index changes to update current track and notify UI
+
     _audioPlayer.currentIndexStream.listen((index) {
       if (index != null && index < _playlist.length) {
         _currentIndex = index;
@@ -72,7 +72,6 @@ class AudioManager extends ChangeNotifier {
       );
     }).toList();
 
-    // Use ConcatenatingAudioSource to handle playlist properly
     await _audioPlayer.setAudioSource(
       ConcatenatingAudioSource(children: sources),
       initialIndex: _currentIndex,

@@ -8,7 +8,6 @@ class TrackService {
 
   static const String baseUrl = 'https://mp3-backend-ut8t.onrender.com/api/tracks';
 
-  // ✅ Check user
   static Future<void> checkUser(String name, String email) async {
     final response = await http.post(
       Uri.parse('$baseUrl/check-user?name=$name&email=$email'),

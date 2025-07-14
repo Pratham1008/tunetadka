@@ -26,7 +26,6 @@ class _LoginPageState extends State<LoginPage> {
         _emailController.text,
       );
 
-      // On success, navigate to MainPage
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
